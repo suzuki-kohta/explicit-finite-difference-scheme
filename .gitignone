@@ -1,0 +1,65 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>数値解析 3Dグラフシミュレーション</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        #controls { margin-bottom: 20px; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+
+    <h2>パラメータ連動型 3Dグラフ</h2>
+
+    <div id="controls">
+        <label for="paramA">固定値 A (感度): </label>
+        <input type="range" id="paramA" min="1" max="10" step="0.1" value="5">
+        <span id="valA">5</span>
+    </div>
+
+    <div id="graph" style="width:100%; height:600px;"></div>
+
+    <script>
+        // グラフを描画する関数
+        function drawGraph() {
+            const a = parseFloat(document.getElementById('paramA').value);
+            document.getElementById('valA').innerText = a;
+
+            // 陽的スキームなどで計算した3Dデータ（X, Y, Z）をここで生成
+            let xData = [], yData = [], zData = [];
+            for (let x = -5; x <= 5; x += 0.5) {
+                let zRow = [];
+                for (let y = -5; y <= 5; y += 0.5) {
+                    // 例として、パラメータ 'a' を使った数式
+                    let z = Math.sin(Math.sqrt(x*x + y*y)) * a; 
+                    zRow.push(z);
+                }
+                zData.push(zRow);
+            }
+
+            // Plotly用のデータ構造
+            const data = [{
+                z: zData,
+                type: 'surface' // 3D曲面グラフ
+            }];
+
+            const layout = {
+                title: '解析結果の3Dプロット',
+                autosize: true,
+                scene: { camera: { eye: { x: 1.5, y: 1.5, z: 1.5 } } }
+            };
+
+            // 描画を実行（すでにある場合は更新される）
+            Plotly.newPlot('graph', data, layout);
+        }
+
+        // スライダーが動いたら再描画するイベントリスナー
+        document.getElementById('paramA').addEventListener('input', drawGraph);
+
+        // 初期描画
+        drawGraph();
+    </script>
+</body>
+</html> -->
